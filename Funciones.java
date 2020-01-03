@@ -1,0 +1,1 @@
+public class Funciones{ public Long f(Long x){ return g(x)*h(x); } public Long g(Long x){ return (h(x)+1)/2; } public Long h(Long x){ return 2*x+1; } }

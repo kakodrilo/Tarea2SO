@@ -4,6 +4,7 @@ import javax.tools.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.net.*;
+import java.util.Scanner;
 import java.lang.*;
 
 
@@ -22,52 +23,61 @@ public class main {
             int j = linea.indexOf("(");
             String nombre = linea.substring(0, j);
             String expresion = linea.substring(j+4);
-            clase = clase + "public int " + nombre + "(int x){ return "+expresion +"; } ";
+            clase = clase + "public Long " + nombre + "(Long x){ return "+expresion +"; } ";
         }
         clase = clase + "}";
         br.close();
         return clase;
     }
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        String c = CrearClase("funciones.txt");
-        System.out.println(c);
 
-        /*
-        String source = "public class Solution{" + "public int add(){" + "return 1+1;" + "}" + "}";
+    public static void IngresarFunciones(){
+        
+    }
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+
+        String source = CrearClase("funciones.txt");
 
         File folder = new File("./");
-        File sourceFile = new File(folder, "Solution.java");
+        File sourceFile = new File(folder, "Funciones.java");
 
-        try {
-            Files.write(sourceFile.toPath(), source.getBytes(StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(sourceFile.getPath());
+        
+        Files.write(sourceFile.toPath(), source.getBytes(StandardCharsets.UTF_8));
+
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        if (compiler == null) {
-            System.out.println("JDK required (running inside of JRE)");
-        } else {
-            System.out.println("you got it!");
-        }
 
         int compilationResult = compiler.run(null, null, null, sourceFile.getPath());
         if (compilationResult == 0) {
-            System.out.println("Compilation is successful");
+            System.out.println("Funciones Ingresadas!");
         } else {
-            System.out.println("Compilation Failed");
+            System.out.println("Fallo al ingresar funciones :c");
         }
-
         try {
             URLClassLoader classLoader = URLClassLoader.newInstance(new URL[] {folder.toURI().toURL() });
-            Class<?> cls = Class.forName("Solution", true, classLoader);
-            Object instance = cls.newInstance();
-            Method method = cls.getDeclaredMethod("add", null);
-            System.out.println(method.invoke(instance, null));
+            Class<?> cls = Class.forName("Funciones", true, classLoader);
+            
+            Scanner Input = new Scanner (System.in);
+            String linea;
+            String fun;
+            String var;
+            int j;
+            System.out.println("Ingrese operacion:");
+            linea = Input.nextLine();
+            while (!linea.equals("salir")) {
+                j = linea.indexOf("(");
+                fun = linea.substring(0, j);
+                var = linea.substring(j+1, linea.length()-1);
+                Method method = cls.getMethod(fun, Long.class);
+                Object respuesta = method.invoke(cls.newInstance(), Long.parseLong(var) );
+                System.out.println("El resultado es: "+respuesta);
+                System.out.println("Ingrese operacion:");
+                linea = Input.nextLine();
+            }
+            Input.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("something wrong");
-        }*/
+            System.out.println("Error de programa");
+        }
 
     }
 }
