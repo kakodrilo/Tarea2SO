@@ -2,7 +2,7 @@
 ejecutar: compilar
 	java Hebra
 
-compilar: main.java
+compilar: Hebra.java
 	javac Hebra.java
 
 clear: 
