@@ -45,7 +45,7 @@ public class Hebra implements Runnable{
 
     /*
     merge: junta dos arreglos ordenados, creando un solo arreglo ordenado. Para esto, compara elemento a elemento
-    los dos arreglos ordenados, y va introduciento el valor menor. 
+    los dos arreglos ordenados, y va introduciento el valor mayor. 
     ----
     Recibe un arreglo que contiene los dos arreglos ordenados (la mitad del arreglo corresponde al subarreglo 1 
     y la otra mitad al subarreglo 2), un entero l que indica la primera posición del subarreglo 1, un entero m que
@@ -71,11 +71,11 @@ public class Hebra implements Runnable{
         }
         
         //Se genera el arreglo final ordenado, tomando elemento a elemento del arreglo 1 y arreglo 2, e introduciendo
-        //el menor de la comparación, para luego avanzar al siguiente:
+        //el mayor de la comparación, para luego avanzar al siguiente:
         int i = 0, j = 0, k = l; //i y j son contadores para cada arreglo, y k es el contador para el arreglo final
         while (i < t1 && j < t2) 
         { 
-            if (L[i] <= R[j]) { 
+            if (L[i] >= R[j]) { 
                 arr[k] = L[i]; 
                 i++; 
             } 
@@ -115,7 +115,7 @@ public class Hebra implements Runnable{
     } 
 
     /*
-    main: tiene un arreglo desordenado y genera una hebra para ordenando utilizando el algoritmo
+    main: tiene un arreglo desordenado y genera una hebra para ordenando de mayor a menor utilizando el algoritmo
     mergesort y más hebras. 
     */
     public static void main(String[] args) {
@@ -133,7 +133,7 @@ public class Hebra implements Runnable{
         } catch (Exception e) {
             System.out.println("Error en la hebra");
         }
-        //Finalmente, se imprime el arreglo ordenado:
+        //Finalmente, se imprime el arreglo ordenado de mayor a menor:
         System.out.println("\nArreglo ordenado"); 
         imprimir(arreglo); 
     }
