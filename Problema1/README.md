@@ -2,6 +2,7 @@
 
 Tarea 2 de Sistemas Operativos 2019-2
 > **Joaquín Castillo Tapia** - 201773520-1
+>
 > **María Paz Morales LLopis** - 201773505-8
 
 ## Pregunta 1
